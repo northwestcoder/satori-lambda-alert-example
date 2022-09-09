@@ -20,6 +20,7 @@ output_path = "${path.module}/lambda-python.zip"
  
 resource "aws_lambda_function" "satori_terraform_lambda_func" {
 filename                       = "${path.module}/lambda-python.zip"
+source_code_hash               = "${data.archive_file.zip_the_python_code.output_base64sha256}"
 function_name                  = "Satori_Lambda_Function"
 role                           = aws_iam_role.lambda_role.arn
 handler                        = "lambda.lambda_handler"
